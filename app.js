@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mail from "./controllers/mail.js";
-import mailEthereal from "./controllers/mailEthereal.js";
+import mail2 from "./controllers/mail2.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/mail", mail);
-app.use("/mailEthereal", mailEthereal);
+app.use("/mail2", mail2);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

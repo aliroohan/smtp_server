@@ -1,5 +1,8 @@
 import express from "express";
+import dotenv from "dotenv";
 import nodemailer from "nodemailer";
+
+dotenv.config();
 
 const router = express.Router();
 
@@ -8,34 +11,26 @@ router.post('/send-email', async (req, res) => {
   const { to, subject, message } = req.body;
 
   try {
-    // Create a test account (only needed once per app run)
-    const testAccount = await nodemailer.createTestAccount();
-
-    // Create a transporter object using the test SMTP account
     const transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
+      host: process.env.EMAIL_HOST,
       port: 587,
-      secure: false, // true for 465, false for other ports
+      secure: false,
       auth: {
-        user: testAccount.user,
-        pass: testAccount.pass,
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
       },
     });
 
-    // Send mail
     const info = await transporter.sendMail({
-      from: 'Ethereal Test <no-reply@example.com>',
+      from: process.env.EMAIL,
       to,
       subject,
       text: message,
     });
 
-    // Preview URL (Ethereal only)
-    const previewUrl = nodemailer.getTestMessageUrl(info);
-
     res.status(200).json({
-      message: 'Email sent (Ethereal)',
-      previewUrl,
+      message: 'Email sent',
+      response: info.response,
     });
   } catch (error) {
     console.error(error);
