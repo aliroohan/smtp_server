@@ -30,7 +30,7 @@ router.post('/send-email', async (req, res) => {
           <p style='margin: 10px 0; color: #555555;'><strong>Message:</strong> ${message}</p>
         </div>
         <div style='background-color: #f4f4f4; text-align: center; padding: 10px; font-size: 12px; color: #999999;'>
-          <p style='margin: 0;'>&copy; 2024 TechAdvancer. All rights reserved.</p>
+          <p style='margin: 0;'>&copy; 2025 TechAdvancer. All rights reserved.</p>
         </div>
       </div>
     </body>
